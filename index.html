@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deployed via Jenkins + Ansible</title>
+
+  <!-- Optional external stylesheet (create style.css if you want to customize) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Minimal fallback styles so the page still looks fine without style.css -->
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --accent: #22c55e;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(135deg, #0b1022 0%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100dvh; display: grid; place-items: center; padding: 24px;
+    }
+    .card {
+      background: rgba(17, 24, 39, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      max-width: 860px; width: 100%;
+      padding: 28px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+    header {
+      display: flex; gap: 16px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 12px; letter-spacing: .4px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15); color: var(--muted);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    h1 { margin: 8px 0 6px; font-size: 26px; line-height: 1.25; }
+    p.lead { margin: 0 0 18px; color: var(--muted); }
+    .grid {
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin: 18px 0 8px;
+    }
+    .tile {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .tile h3 { margin: 4px 0 6px; font-size: 16px; }
+    .tile p { margin: 0; color: var(--muted); font-size: 14px; }
+    .ok {
+      color: #16a34a; font-weight: 600; font-size: 13px;
+    }
+    .footer {
+      margin-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      flex-wrap: wrap; color: var(--muted); font-size: 13px;
+    }
+    .btn {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #06110b; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 700;
+      cursor: pointer; transition: filter .2s ease;
+    }
+    .btn:hover { filter: brightness(1.05); }
+    code.inline { background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <header>
+      <span class="badge">CI/CD</span>
+      <span class="badge">Jenkins</span>
+      <span class="badge">Ansible</span>
+      <span class="badge">Static Site</span>
+    </header>
+
+    <h1>🚀 Deployed Successfully via Jenkins + Ansible</h1>
+    <p class="lead">
+      This page was delivered to your web servers using a Jenkins Pipeline and an Ansible playbook.
+      Update your HTML/CSS/JS in GitHub → Jenkins builds → Ansible deploys to all servers. 🎯
+    </p>
+
+    <section class="grid" aria-label="deployment-summary">
+      <div class="tile">
+        <h3>Jenkins ➜ Ansible</h3>
+        <p>Pipeline picks code from GitHub, hands it to Ansible to deploy on your target servers.</p>
+      </div>
+      <div class="tile">
+        <h3>Multi‑Server</h3>
+        <p>Inventory group <code class="inline">[webservers]</code> can contain 1 or many hosts.</p>
+      </div>
+      <div class="tile">
+        <h3>Idempotent</h3>
+        <p>Re‑runs won’t break things—Ansible ensures consistent state on servers.</p>
+      </div>
+      <div class="tile">
+        <h3>Status</h3>
+        <p class="ok">✅ Ready to serve static files from <code class="inline">/var/www/html</code></p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>
+        Build Time: <code class="inline" id="buildTime">loading…</code>
+      </div>
+      <button class="btn" id="checkBtn" type="button">Run Local Check</button>
+    </div>
+  </main>
+
+  <!-- Optional script (create scripts/main.js if you want to extend) -->
+  <script>
+    // Show a simple client-side "build time" using the user's browser clock.
+    // If you want server/CI time, you can template this value in your pipeline.
+    const el = document.getElementById('buildTime');
+    if (el) el.textContent = new Date().toLocaleString();
+
+    // Small demo interaction
+    document.getElementById('checkBtn')?.addEventListener('click', () => {
+      alert('If you can see this, your static site is served correctly! 🎉');
+    });
+  </script>
+</body>
+</html>
